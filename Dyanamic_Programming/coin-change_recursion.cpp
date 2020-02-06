@@ -12,7 +12,6 @@ typedef long long ll;
 typedef vector<ll> vi;
 typedef vector<vi> vii;
 typedef unordered_map<ll,ll> mpp;
-typedef pair<ll,ll> ii;
 
 int call=0;
 
