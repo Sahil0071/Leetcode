@@ -1,5 +1,56 @@
 class Solution {
 public:
+    string Palindrome(string s)
+    {
+        int n=s.length();
+        int l,r,cur_len,max_len=0,start_ind=0;
+        for(auto i=0;i<n;i++)
+        {
+            //Odd length
+            l=i,r=i;
+            while(l>=0&&r<n&&s[l]==s[r])
+            {
+                cur_len=(r-l+1);
+                if(cur_len>max_len)
+                {
+                    start_ind=l;
+                    max_len=cur_len;
+                }
+                l--,r++;
+            }
+            //Even Length
+            l=i,r=i+1;
+            while(l>=0&&r<n&&s[l]==s[r])
+            {
+                cur_len=(r-l+1);
+                if(cur_len>max_len)
+                {
+                    start_ind=l;
+                    max_len=cur_len;
+                }
+                l--,r++;
+            }
+        }
+        return(s.substr(start_ind,max_len));
+    }
+    
+    string longestPalindrome(string s) {
+        string str="";
+        if(s.length()==0)
+        {
+            return str;
+        }
+        str=Palindrome(s);
+        return str;
+    }
+};
+
+
+
+
+
+class Solution {
+public:
     string oddPalindrome(string s)
     {
         int n=s.length();
