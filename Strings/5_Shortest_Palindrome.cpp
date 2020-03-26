@@ -1,6 +1,50 @@
 class Solution {
 public:
     
+    string lps(string s)
+    {
+        string str=s,s1;
+        reverse(str.begin(),str.end());
+        s1=s;
+        s+="$"+str;
+        int n=s.length();
+        int i=1,j=0;
+        vector<int>lps(n,0);
+        while(i<n&&j<n)
+        {
+            if(s[i]==s[j])
+            {
+                lps[i]=j+1;
+                i++,j++;
+            }
+            else
+            {
+                if(j!=0)
+                {
+                    j=lps[j-1];
+                }
+                else{
+                    lps[i]=0;
+                    i++;
+                }
+            }
+        }
+        string s2=s.substr(str.length()+1,str.length()-lps[n-1]);
+        return(s2+s1);
+    }
+    
+    
+    string shortestPalindrome(string s)
+    {
+        return(lps(s));
+    }
+};
+
+
+
+class Solution {
+public:
+    
     
     int palindrome(string s)
     {
