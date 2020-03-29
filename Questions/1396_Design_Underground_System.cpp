@@ -37,10 +37,42 @@ public:
     }
 };
 
-/**
- * Your UndergroundSystem object will be instantiated and called as such:
- * UndergroundSystem* obj = new UndergroundSystem();
- * obj->checkIn(id,stationName,t);
- * obj->checkOut(id,stationName,t);
- * double param_3 = obj->getAverageTime(startStation,endStation);
- */
+//Space Efficient
+ 
+#define sc second
+#define fr first
+class UndergroundSystem {
+public:
+    map<int,string>mp;
+    map<int,int>mp1;
+    map<pair<string,string>,vector<int>>mp2;
+    
+    UndergroundSystem() {
+    
+        
+    }
+    void checkIn(int id, string stationName, int t) {
+        mp[id]=stationName;
+        mp1[id]=t;
+    }
+    
+    void checkOut(int id, string stationName, int t) {
+        mp2[{mp[id],stationName}].push_back(t-mp1[id]);
+    }
+    
+    double getAverageTime(string startStation, string endStation) {
+        double s=0;
+        if(mp2.count({startStation,endStation})==1)
+        {
+            auto n=mp2[{startStation,endStation}];
+            for(auto i:n)
+            {
+                s+=(i);
+            }
+            s/=n.size()*1.0;
+            return s;
+        }
+        return s;
+    }
+};
+
